@@ -35,13 +35,10 @@ public class KBMHeroController : MonoBehaviour
         m_CastAbility3 = (KeyCode)PlayerPrefs.GetInt("Key_ABILITY3", (int)KeyCode.Alpha3);
         m_CastAbility4 = (KeyCode)PlayerPrefs.GetInt("Key_ABILITY4", (int)KeyCode.Alpha4);
         m_CastAbility5 = (KeyCode)PlayerPrefs.GetInt("Key_ABILITY5", (int)KeyCode.Alpha5);
-	}
 
-    public void AttachPawn(Pawn pawn)
-    {
-        m_Pawn = pawn;
-        m_Hero = pawn.gameObject.GetComponent<Hero>();
-    }
+        m_Pawn = GetComponent<Pawn>();
+        m_Hero = GetComponent<Hero>();
+	}
 	
 	// Update is called once per frame
 	void Update () 

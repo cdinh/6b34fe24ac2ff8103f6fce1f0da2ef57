@@ -1,63 +1,32 @@
 using UnityEngine;
 
-abstract public class Ability 
+abstract public class Ability : MonoBehaviour
 {
-    public string Name 
-    { 
-        get { return m_Name; }
-    }
-    protected string m_Name;
-
-    public string Description
-    {
-        get { return m_Description; }
-    }
-    protected string m_Description;
+    public string Name;
+    public string Description;
 
     // In seconds
-    public float MaxCooldown
-    {
-        get { return m_MaxCooldown; }
-    }
-    protected float m_MaxCooldown;
+    public float MaxCooldown;
+    public float CurrentCooldown;
+    public uint EnergyCost;
 
-    public float CurrentCooldown
-    {
-        get { return m_CurrentCooldown; }
-    }
-    protected float m_CurrentCooldown;
-
-    public uint EnergyCost
-    {
-        get { return m_EnergyCost; }
-    }
-    protected uint m_EnergyCost;
-
-    public Hero Owner
-    {
-        set { m_Owner = value; }
-    }
-    protected Hero m_Owner;
+    public Hero Owner;
 
 	// Use this for initialization
-	public Ability(string name, string description, float maxCooldown, float currentCooldown, uint energyCost) 
+    void Start()
     {
-        m_Name = name;
-        m_Description = description;
-        m_MaxCooldown = maxCooldown;
-        m_CurrentCooldown = currentCooldown;
-        m_EnergyCost = energyCost;
-	}
+        Owner = GetComponent<Hero>();
+    }
 	
 	// Update is called once per frame
-	public void Update() 
+	void Update() 
     {
-        if (m_CurrentCooldown > 0)
+        if (CurrentCooldown > 0)
         {
-            m_CurrentCooldown -= Time.deltaTime;
+            CurrentCooldown -= Time.deltaTime;
 
-            if (m_CurrentCooldown < 0)
-                m_CurrentCooldown = 0f;
+            if (CurrentCooldown < 0)
+                CurrentCooldown = 0f;
         }
 	}
 
@@ -67,7 +36,7 @@ abstract public class Ability
 
         if (successful)
         {
-            m_CurrentCooldown = m_MaxCooldown;
+            CurrentCooldown = MaxCooldown;
         }
 
         return successful;

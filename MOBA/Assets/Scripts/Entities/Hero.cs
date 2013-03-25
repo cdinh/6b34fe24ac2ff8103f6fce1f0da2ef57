@@ -70,9 +70,15 @@ public class Hero : MonoBehaviour
 	void Start () {
         m_Status = HeroStatus.ALIVE;
         m_Abilities = new Ability[NUM_ABILITIES];
+
+        for (int i = 0; i < m_Abilities.Length; i++)
+        {
+            m_Abilities[i] = transform.GetChild(i).GetComponent<Ability>();
+        }
+        GetComponent<Pawn>().SetSpeed(20);
 	}
 
-    public void Initialize(string name, uint maxHealth, uint maxEnergy, uint attack, uint defense, uint movementSpeed)
+    /*public void Initialize(string name, uint maxHealth, uint maxEnergy, uint attack, uint defense, uint movementSpeed)
     {
         m_Name = name;
 
@@ -86,8 +92,13 @@ public class Hero : MonoBehaviour
         m_Defense = defense;
         m_MovementSpeed = movementSpeed;
 
+        for (int i = 0; i < m_Abilities.Length; i++)
+        {
+            m_Abilities[i] = transform.GetChild(i).GetComponent<Ability>();
+        }
+
         SendMessage("SetSpeed", movementSpeed);
-    }
+    }*/
 	
 	// Update is called once per frame
 	void Update () {
