@@ -22,13 +22,24 @@ public class Pawn : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
     }
 
     void FixedUpdate()
     {
-        Quaternion rotation = Quaternion.LookRotation(transform.forward);
-        rigidbody.MoveRotation(rotation);
-        rigidbody.AddForce(new Vector3(m_Direction.x, 0, m_Direction.z) * m_MovementSpeed, ForceMode.Impulse);
+        if (!m_Direction.Equals(Vector3.zero))
+        {
+            m_Direction = transform.TransformDirection(m_Direction);
+            m_Direction *= m_MovementSpeed;
+            rigidbody.MoveRotation(transform.rotation);
+            rigidbody.AddForce(m_Direction, ForceMode.Impulse);
+        }
+       
+    }
+
+    void LateUpdate()
+    {
+        m_Direction = Vector3.zero;
     }
 
     public void SetMass(float mass)

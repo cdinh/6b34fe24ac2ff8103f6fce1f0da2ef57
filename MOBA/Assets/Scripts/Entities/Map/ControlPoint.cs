@@ -11,6 +11,9 @@ public class ControlPoint : MonoBehaviour {
     public float DecaySpeed;
     public float TimeToDecay;
 
+    private int m_BlueCapturePoints;
+    private int m_RedCapturePoints;
+
     private bool m_IsBeingCaptured;
     private float m_LastCaptureTime;
 
@@ -19,6 +22,9 @@ public class ControlPoint : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         m_Manager = GameObject.Find("Managers").GetComponent<GameManager>();
+
+        m_BlueCapturePoints = 0;
+        m_RedCapturePoints = 0;
 
         m_IsBeingCaptured = false;
         m_LastCaptureTime = 0;

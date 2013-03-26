@@ -30,7 +30,8 @@ public class Hero : MonoBehaviour
 
         for (int i = 0; i < m_Abilities.Length; i++)
         {
-            m_Abilities[i] = transform.GetChild(i).GetComponent<Ability>();
+            m_Abilities[i] = transform.FindChild("Ability" + (i + 1)).GetComponent<Ability>();
+            m_Abilities[i].Owner = this;
         }
         GetComponent<Pawn>().SetSpeed(1f);
 	}
@@ -38,10 +39,11 @@ public class Hero : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
     {
-        foreach (Ability a in m_Abilities)
-        {
-            a.UpdateCooldowns();
-        }
+        //foreach (Ability a in m_Abilities)
+        //{
+        //    
+        //    a.UpdateCooldowns();
+        //}
 	}
 
     public void SetAbility(Ability ability, uint index)

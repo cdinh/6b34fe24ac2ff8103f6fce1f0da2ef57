@@ -69,15 +69,6 @@ public class KBMHeroController : MonoBehaviour
 
         m_Direction = Vector3.zero;
 
-        if (Input.GetKey(m_ForwardKey))
-            m_Direction.z++;
-        if (Input.GetKey(m_BackwardKey))
-            m_Direction.z--;
-        if (Input.GetKey(m_LeftKey))
-            m_Direction.x--;
-        if (Input.GetKey(m_RightKey))
-            m_Direction.x++;
-
-        m_Pawn.Move(m_Direction);
+        m_Pawn.Move(new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")));
     }
 }
