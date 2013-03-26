@@ -48,13 +48,20 @@
      <Compile Include="Assets\Scripts\Abilities\TestAbility.cs" />
      <Compile Include="Assets\Scripts\Account\Login.cs" />
      <Compile Include="Assets\Scripts\DemoManager.cs" />
-     <Compile Include="Assets\Scripts\Entities\Hero.cs" />
-     <Compile Include="Assets\Scripts\Entities\HeroStatus.cs" />
-     <Compile Include="Assets\Scripts\Entities\Pawn.cs" />
+     <Compile Include="Assets\Scripts\Entities\Characters\Hero.cs" />
+     <Compile Include="Assets\Scripts\Entities\Characters\HeroStatus.cs" />
+     <Compile Include="Assets\Scripts\Entities\Characters\Pawn.cs" />
+     <Compile Include="Assets\Scripts\Entities\Map\ControlPoint.cs" />
+     <Compile Include="Assets\Scripts\Entities\Map\ControlPointEffect.cs" />
+     <Compile Include="Assets\Scripts\Entities\Map\EnergyRegenerator.cs" />
+     <Compile Include="Assets\Scripts\Entities\Map\HealthRegenerator.cs" />
+     <Compile Include="Assets\Scripts\Entities\Map\SpawnArea.cs" />
      <Compile Include="Assets\Scripts\Input\KBMHeroController.cs" />
-     <Compile Include="Assets\Scripts\Managers\Game Modes\IGameMode.cs" />
+     <Compile Include="Assets\Scripts\Managers\Game Modes\GameMode.cs" />
      <Compile Include="Assets\Scripts\Managers\Game Modes\TeamDeathMatch.cs" />
+     <Compile Include="Assets\Scripts\Managers\Game Modes\VictoryStatus.cs" />
      <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
+     <Compile Include="Assets\Scripts\Utility\GameUtility.cs" />
      <Compile Include="Assets\Scripts\Utility\GuiUtility.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

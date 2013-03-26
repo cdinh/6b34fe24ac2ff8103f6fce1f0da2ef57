@@ -11,7 +11,7 @@ public class Pawn : MonoBehaviour {
     public Transform FallAnimation;
 
     protected Vector3 m_Direction;
-    protected uint m_MovementSpeed;
+    protected float m_MovementSpeed;
 
 	// Use this for initialization
 	void Start () {
@@ -26,7 +26,9 @@ public class Pawn : MonoBehaviour {
 
     void FixedUpdate()
     {
-        rigidbody.AddForce(new Vector3(m_Direction.x, 0, m_Direction.z) * m_MovementSpeed);
+        Quaternion rotation = Quaternion.LookRotation(transform.forward);
+        rigidbody.MoveRotation(rotation);
+        rigidbody.AddForce(new Vector3(m_Direction.x, 0, m_Direction.z) * m_MovementSpeed, ForceMode.Impulse);
     }
 
     public void SetMass(float mass)
@@ -34,7 +36,7 @@ public class Pawn : MonoBehaviour {
         rigidbody.mass = mass;
     }
 
-    public void SetSpeed(uint speed)
+    public void SetSpeed(float speed)
     {
         m_MovementSpeed = speed;
     }

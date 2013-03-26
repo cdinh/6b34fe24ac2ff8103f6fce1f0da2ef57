@@ -17,9 +17,8 @@ abstract public class Ability : MonoBehaviour
     {
         Owner = GetComponent<Hero>();
     }
-	
-	// Update is called once per frame
-	void Update() 
+
+    public void UpdateCooldowns()
     {
         if (CurrentCooldown > 0)
         {
@@ -28,7 +27,7 @@ abstract public class Ability : MonoBehaviour
             if (CurrentCooldown < 0)
                 CurrentCooldown = 0f;
         }
-	}
+    }
 
     public bool Cast()
     {
