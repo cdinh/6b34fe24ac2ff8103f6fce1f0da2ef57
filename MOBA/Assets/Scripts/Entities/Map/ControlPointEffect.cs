@@ -21,7 +21,7 @@ public abstract class ControlPointEffect : MonoBehaviour
             case "Red":
                 foreach (Hero hero in m_Manager.GetTeamList(m_ControlPoint.Team))
                 {
-                    if (GameUtility.DistanceSquared(transform, hero.transform) <= Radius)
+                    if (GameUtility.DistanceSquared(transform, hero.transform) <= Radius * Radius)
                     {
                         ApplyEffect(hero);
                     }

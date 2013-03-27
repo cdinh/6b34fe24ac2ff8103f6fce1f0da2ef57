@@ -23,8 +23,6 @@ public class SpawnArea : MonoBehaviour {
             {
                 hero.AddHealth(HealthRegen);
                 hero.AddEnergy(EnergyRegen);
-
-                Debug.Log(hero.CurrentHealth);
             }
         }
     }
