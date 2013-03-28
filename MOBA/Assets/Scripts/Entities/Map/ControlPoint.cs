@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 public class ControlPoint : MonoBehaviour {
-    public string Team;
+    public Team Team;
 
     public float PointsToCapture;
     public float CaptureSpeed;
@@ -10,6 +10,9 @@ public class ControlPoint : MonoBehaviour {
 
     public float DecaySpeed;
     public float TimeToDecay;
+
+    private AudioSource m_DuringCapture;
+    private AudioSource m_OnCapture;
 
     // -100: Blue Control
     // 0: Neutral
@@ -26,6 +29,10 @@ public class ControlPoint : MonoBehaviour {
 
         m_CapturePoints = 0f;
         m_LastCaptureTime = 0f;
+
+        AudioSource[] sources = GetComponents<AudioSource>();
+        m_DuringCapture = sources[0];
+        m_OnCapture = sources[1];
 	}
 
     void OnDestroy()
@@ -42,8 +49,8 @@ public class ControlPoint : MonoBehaviour {
 
     private void CalculateCaptureRate()
     {
-        int nearbyBlue = HeroesInRange("Blue");
-        int nearbyRed = HeroesInRange("Red");
+        int nearbyBlue = HeroesInRange(Team.BLUE);
+        int nearbyRed = HeroesInRange(Team.RED);
 
         if (nearbyBlue == 0 && nearbyRed == 0)
         {
@@ -62,7 +69,7 @@ public class ControlPoint : MonoBehaviour {
 
                 if (m_CapturePoints == 0)
                 {
-                    Team = "Neutral";
+                    Team = Team.NEUTRAL;
                 }
             }
         }
@@ -77,8 +84,17 @@ public class ControlPoint : MonoBehaviour {
                 if (m_CapturePoints < -PointsToCapture)
                     m_CapturePoints = -PointsToCapture;
 
-                if (m_CapturePoints == -PointsToCapture)
-                    Team = "Blue";
+                if (Team != Team.BLUE)
+                {
+                    if (!m_DuringCapture.isPlaying)
+                        m_DuringCapture.Play();
+
+                    if (m_CapturePoints == -PointsToCapture)
+                    {
+                        Team = Team.BLUE;
+                        m_OnCapture.Play();
+                    }
+                }
             }
             else if (nearbyRed > nearbyBlue)
             {
@@ -87,8 +103,17 @@ public class ControlPoint : MonoBehaviour {
                 if (m_CapturePoints > PointsToCapture)
                     m_CapturePoints = PointsToCapture;
 
-                if (m_CapturePoints == PointsToCapture)
-                    Team = "Red";
+                if (Team != Team.RED)
+                {
+                    if (!m_DuringCapture.isPlaying)
+                        m_DuringCapture.Play();
+
+                    if (m_CapturePoints == -PointsToCapture)
+                    {
+                        Team = Team.RED;
+                        m_OnCapture.Play();
+                    }
+                }
             }
         }
     }
@@ -108,7 +133,7 @@ public class ControlPoint : MonoBehaviour {
         renderer.material.color = newColor;
     }
 
-    private int HeroesInRange(string team)
+    private int HeroesInRange(Team team)
     {
         int count = 0;
 

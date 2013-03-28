@@ -62,6 +62,7 @@
      <Compile Include="Assets\Scripts\Input\KBMHeroController.cs" />
      <Compile Include="Assets\Scripts\Managers\DemoManager.cs" />
      <Compile Include="Assets\Scripts\Managers\Game Modes\GameMode.cs" />
+     <Compile Include="Assets\Scripts\Managers\Game Modes\Team.cs" />
      <Compile Include="Assets\Scripts\Managers\Game Modes\TeamDeathMatch.cs" />
      <Compile Include="Assets\Scripts\Managers\Game Modes\VictoryStatus.cs" />
      <Compile Include="Assets\Scripts\Managers\GameManager.cs" />

@@ -9,7 +9,7 @@ public class Hero : MonoBehaviour
     #region PLAYER STATS
 
     public string Name;
-    public string Team;
+    public Team Team;
     public HeroStatus Status;
     public float MaxHealth;
     public float CurrentHealth;
@@ -85,5 +85,12 @@ public class Hero : MonoBehaviour
             return;
 
         CurrentEnergy = System.Math.Min(CurrentEnergy + amount, MaxEnergy);
+    }
+
+    public void Spawn(Vector3 position)
+    {
+        rigidbody.MovePosition(position);
+        Status = HeroStatus.ALIVE;
+        enabled = true;
     }
 }
