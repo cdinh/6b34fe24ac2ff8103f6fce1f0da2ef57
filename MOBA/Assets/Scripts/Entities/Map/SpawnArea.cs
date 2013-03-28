@@ -30,7 +30,6 @@ public class SpawnArea : MonoBehaviour {
 
         Vector2 randomPoint = Random.insideUnitCircle * smallest;
         Vector3 spawnPosition = new Vector3(collider.bounds.center.x + randomPoint.x, transform.position.y, collider.bounds.center.z + randomPoint.y);
-        spawnPosition.y += hero.collider.bounds.size.y / 2;
         hero.Spawn(spawnPosition);
     }
 

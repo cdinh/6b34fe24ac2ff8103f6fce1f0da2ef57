@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour {
         m_GameMode.Initialize(this);
 
         // Test
-        Invoke("SpawnPlayers", 1);
+        Invoke("SpawnPlayers", 0.5f);
 	}
 
     public void Reset()
