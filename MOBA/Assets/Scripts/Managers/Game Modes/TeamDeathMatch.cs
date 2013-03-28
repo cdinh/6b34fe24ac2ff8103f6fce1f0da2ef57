@@ -4,35 +4,37 @@ using System.Collections;
 public class TeamDeathMatch : GameMode {
     public int RoundsToWin;
 
-    private int m_BlueRoundsWon;
-    private int m_RedRoundsWon;
+    public int BlueRoundsWon;
+    public  int RedRoundsWon;
 
     private VictoryStatus m_Winner;
 
     void Start()
     {
-        m_BlueRoundsWon = 0;
-        m_RedRoundsWon = 0;
+        BlueRoundsWon = 0;
+        RedRoundsWon = 0;
 
         m_Winner = VictoryStatus.NONE;
+
+        gameObject.AddComponent<TeamDeathMatchGUI>();
     }
 
     void FixedUpdate()
     {
         if (m_GameManager.GetDeadHeroes(Team.BLUE).Count >= m_GameManager.GetTeamList(Team.BLUE).Count)
         {
-            m_RedRoundsWon++;
+            RedRoundsWon++;
 
-            if (m_RedRoundsWon >= RoundsToWin)
+            if (RedRoundsWon >= RoundsToWin)
                 m_Winner = VictoryStatus.RED;
             else
                 m_GameManager.Reset();
         }
         else if (m_GameManager.GetDeadHeroes(Team.RED).Count >= m_GameManager.GetTeamList(Team.RED).Count)
         {
-            m_BlueRoundsWon++;
+            BlueRoundsWon++;
 
-            if (m_BlueRoundsWon >= RoundsToWin)
+            if (BlueRoundsWon >= RoundsToWin)
                 m_Winner = VictoryStatus.BLUE;
             else
                 m_GameManager.Reset();

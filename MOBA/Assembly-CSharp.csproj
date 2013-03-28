@@ -59,6 +59,7 @@
      <Compile Include="Assets\Scripts\Entities\Map\EnergyRegenerator.cs" />
      <Compile Include="Assets\Scripts\Entities\Map\HealthRegenerator.cs" />
      <Compile Include="Assets\Scripts\Entities\Map\SpawnArea.cs" />
+     <Compile Include="Assets\Scripts\GUI\Game Modes\TeamDeathMatchGUI.cs" />
      <Compile Include="Assets\Scripts\Input\KBMHeroController.cs" />
      <Compile Include="Assets\Scripts\Managers\DemoManager.cs" />
      <Compile Include="Assets\Scripts\Managers\Game Modes\GameMode.cs" />

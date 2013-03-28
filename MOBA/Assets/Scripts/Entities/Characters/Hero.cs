@@ -39,11 +39,11 @@ public class Hero : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
     {
-        //foreach (Ability a in m_Abilities)
-        //{
-        //    
-        //    a.UpdateCooldowns();
-        //}
+        foreach (Ability a in m_Abilities)
+        {
+            
+            a.UpdateCooldowns();
+        }
 	}
 
     public void SetAbility(Ability ability, uint index)
