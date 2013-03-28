@@ -1,11 +1,15 @@
 using UnityEngine;
 using System.Collections;
+using System;
 
 public class Login : MonoBehaviour {
 
     private const string LOGIN_URL = "http://mobagame.christopherdinh.com/login.php";
     private const string REGISTER_URL = "http://mobagame.christopherdinh.com/register.php";
     private const string APP_CODE = "68c00e32fccadee9787f78156c2a0432";
+
+    private const string ERROR_EMPTY = "Login or password cant be empty.";
+    private const string ERROR_INVALID = "Invalid username or password.";
 
     private const string DELIMITER = "||";
 
@@ -75,24 +79,30 @@ public class Login : MonoBehaviour {
         yield return w;
         m_IsLoggingIn = false;
 
-        if (w.error == null)
+        if (w.text == ERROR_EMPTY || w.text == ERROR_INVALID)
         {
-            Debug.Log("Login successful!");
-            string response = w.text;
-            Debug.Log(response);
-
-            int sessionLength = response.IndexOf(DELIMITER);
-            string sessionID = response.Substring(0, sessionLength);
-            string token = response.Substring(sessionLength + DELIMITER.Length);
-
-            Debug.Log("Session ID: " + sessionID);
-            Debug.Log("Token: " + token);
-            //Application.LoadLevel("MainMenu");
+            Debug.Log(w.text);
         }
         else
         {
-            Debug.Log("Error");
-            Debug.Log(w.text);
+            try
+            {
+                Debug.Log("Login successful!");
+                string response = w.text;
+                Debug.Log(response);
+
+                int sessionLength = response.IndexOf(DELIMITER);
+                string sessionID = response.Substring(0, sessionLength);
+                string token = response.Substring(sessionLength + DELIMITER.Length);
+
+                Debug.Log("Session ID: " + sessionID);
+                Debug.Log("Token: " + token);
+                //Application.LoadLevel("MainMenu");
+            }
+            catch (Exception e)
+            {
+                Debug.Log(e.Message);
+            }
         }
 
         w.Dispose();
