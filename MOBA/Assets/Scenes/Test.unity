@@ -685,8 +685,8 @@ Transform:
   m_LocalPosition: {x: 18.7257385, y: -15.1367455, z: -166.796753}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1604852601}
   - {fileID: 743025792}
+  - {fileID: 1604852601}
   m_Father: {fileID: 0}
 --- !u!1 &743025791
 GameObject:
@@ -765,7 +765,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c4bddb67c11c2d4889bfa80caa1388a, type: 3}
   m_Name: 
-  Team: 0
+  Team: 1
   HealthRegen: .100000001
   EnergyRegen: .100000001
 --- !u!1001 &760947921
@@ -884,7 +884,9 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a2dda12bb8e43e4caf086df739a0390, type: 3}
   m_Name: 
-  RoundsToWin: 0
+  RoundsToWin: 3
+  BlueRoundsWon: 0
+  RedRoundsWon: 0
 --- !u!1 &896204635
 GameObject:
   m_ObjectHideFlags: 0
@@ -1248,6 +1250,54 @@ MonoBehaviour:
   CurrentCooldown: 0
   Owner: {fileID: 0}
   fireball: {fileID: 100000, guid: c4276087bb68a584b9703a1475796445, type: 2}
+--- !u!1001 &1237350972
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 739266201}
+    m_Modifications:
+    - target: {fileID: 400000, guid: 9329d6a283919994cb5d0aab42da77c2, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -208.312805
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 9329d6a283919994cb5d0aab42da77c2, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 53.3896904
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 9329d6a283919994cb5d0aab42da77c2, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 139.599045
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 9329d6a283919994cb5d0aab42da77c2, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 9329d6a283919994cb5d0aab42da77c2, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 9329d6a283919994cb5d0aab42da77c2, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 9329d6a283919994cb5d0aab42da77c2, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 9329d6a283919994cb5d0aab42da77c2, type: 2}
+      propertyPath: m_Name
+      value: Red Spawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 9329d6a283919994cb5d0aab42da77c2, type: 2}
+      propertyPath: Team
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 9329d6a283919994cb5d0aab42da77c2, type: 2}
+  m_RootGameObject: {fileID: 1604852600}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1 &1243340967
 GameObject:
   m_ObjectHideFlags: 0
@@ -1302,7 +1352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69dafe1738566694fad772e0a298e30b, type: 3}
   m_Name: 
   Name: 
-  Team: 2
+  Team: 0
   Status: 0
   MaxHealth: 500
   CurrentHealth: 0
@@ -1728,8 +1778,8 @@ Transform:
 --- !u!1 &1604852600
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 100000, guid: 9329d6a283919994cb5d0aab42da77c2, type: 2}
+  m_PrefabInternal: {fileID: 1237350972}
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1604852601}
@@ -1747,8 +1797,8 @@ GameObject:
 --- !u!4 &1604852601
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 400000, guid: 9329d6a283919994cb5d0aab42da77c2, type: 2}
+  m_PrefabInternal: {fileID: 1237350972}
   m_GameObject: {fileID: 1604852600}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -208.312805, y: 53.3896904, z: 139.599045}
@@ -1758,8 +1808,9 @@ Transform:
 --- !u!23 &1604852602
 Renderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 2300000, guid: 9329d6a283919994cb5d0aab42da77c2,
+    type: 2}
+  m_PrefabInternal: {fileID: 1237350972}
   m_GameObject: {fileID: 1604852600}
   m_Enabled: 1
   m_CastShadows: 1
@@ -1776,8 +1827,9 @@ Renderer:
 --- !u!65 &1604852603
 BoxCollider:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 6500000, guid: 9329d6a283919994cb5d0aab42da77c2,
+    type: 2}
+  m_PrefabInternal: {fileID: 1237350972}
   m_GameObject: {fileID: 1604852600}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -1788,21 +1840,23 @@ BoxCollider:
 --- !u!33 &1604852604
 MeshFilter:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 3300000, guid: 9329d6a283919994cb5d0aab42da77c2,
+    type: 2}
+  m_PrefabInternal: {fileID: 1237350972}
   m_GameObject: {fileID: 1604852600}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &1604852605
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 11400000, guid: 9329d6a283919994cb5d0aab42da77c2,
+    type: 2}
+  m_PrefabInternal: {fileID: 1237350972}
   m_GameObject: {fileID: 1604852600}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c4bddb67c11c2d4889bfa80caa1388a, type: 3}
   m_Name: 
-  Team: 1
+  Team: 2
   HealthRegen: .100000001
   EnergyRegen: .100000001
 --- !u!1 &1693309251
