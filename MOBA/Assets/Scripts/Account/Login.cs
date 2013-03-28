@@ -8,8 +8,9 @@ public class Login : MonoBehaviour {
     private const string REGISTER_URL = "http://mobagame.christopherdinh.com/register.php";
     private const string APP_CODE = "68c00e32fccadee9787f78156c2a0432";
 
-    private const string ERROR_EMPTY = "Login or password cant be empty.";
+    private const string ERROR_EMPTY = "Username or password cant be empty.";
     private const string ERROR_INVALID = "Invalid username or password.";
+    private const string ERROR_EXISTS = "Username already exists";
 
     private const string DELIMITER = "||";
 
@@ -28,11 +29,6 @@ public class Login : MonoBehaviour {
         m_Username = "";
         m_Password = "";
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
     void OnGUI()
     {
@@ -47,11 +43,19 @@ public class Login : MonoBehaviour {
         GUI.Label(GuiUtility.PercRect(0.4f, 0.36f, 0.2f, 0.05f), "Password", TextStyle);
         m_Password = GUI.PasswordField(GuiUtility.PercRect(0.4f, 0.40f, 0.2f, 0.05f), m_Password, '*', 32);
 
-        if (GUI.Button(GuiUtility.PercRect(0.45f, 0.5f, 0.1f, 0.05f), "Login"))
+        if (GUI.Button(GuiUtility.PercRect(0.5f, 0.5f, 0.1f, 0.05f), "Login"))
         {
             if (m_Username.Length != 0 && m_Password.Length != 0)
             {
                 StartCoroutine(SubmitLogin());
+            }
+        }
+
+        if (GUI.Button(GuiUtility.PercRect(0.4f, 0.5f, 0.1f, 0.05f), "Register"))
+        {
+            if (m_Username.Length != 0 && m_Password.Length != 0)
+            {
+                StartCoroutine(SubmitRegister());
             }
         }
     }
@@ -85,37 +89,58 @@ public class Login : MonoBehaviour {
         }
         else
         {
-            try
-            {
-                Debug.Log("Login successful!");
-                string response = w.text;
-                Debug.Log(response);
+            Debug.Log("Login successful!");
+            string response = w.text;
+            Debug.Log(response);
 
-                int sessionLength = response.IndexOf(DELIMITER);
-                string sessionID = response.Substring(0, sessionLength);
-                string token = response.Substring(sessionLength + DELIMITER.Length);
-
-                Debug.Log("Session ID: " + sessionID);
-                Debug.Log("Token: " + token);
-                //Application.LoadLevel("MainMenu");
-            }
-            catch (Exception e)
-            {
-                Debug.Log(e.Message);
-            }
+            ParseResponse(response);
+            //Application.LoadLevel("MainMenu");
         }
 
         w.Dispose();
     }
 
-    private IEnumerator SubmitRegister(string username, string password)
+    private IEnumerator SubmitRegister()
     {
         WWWForm form = new WWWForm();
         form.AddField("appcode", APP_CODE);
-        form.AddField("username", username);
-        form.AddField("password", password);
+        form.AddField("username", m_Username);
+        form.AddField("password", m_Password);
 
-        WWW w = new WWW("");
+        WWW w = new WWW(REGISTER_URL, form);
         yield return w;
+
+        if (w.text == ERROR_EMPTY || w.text == ERROR_EXISTS)
+        {
+            Debug.Log(w.text);
+        }
+        else
+        {
+            Debug.Log("Successfully registered and logged in!");
+            string response = w.text;
+            Debug.Log(response);
+
+            ParseResponse(response);
+            //Application.LoadLevel("MainMenu");
+        }
+
+        w.Dispose();
+    }
+
+    private void ParseResponse(string response)
+    {
+        try
+        {
+            int sessionLength = response.IndexOf(DELIMITER);
+            string sessionID = response.Substring(0, sessionLength);
+            string token = response.Substring(sessionLength + DELIMITER.Length);
+
+            Debug.Log("Session ID: " + sessionID);
+            Debug.Log("Token: " + token);
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e.Message);
+        }
     }
 }
